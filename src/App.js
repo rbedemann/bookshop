@@ -39,7 +39,7 @@ export default function CategoryPage() {
         .then(booksObj => setBooks(booksObj));
     }
     fetchBooks();
-  });
+  }, []);
 
   return (
     <div className={classes.root}>
