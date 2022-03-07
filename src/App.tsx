@@ -7,7 +7,6 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import { BookList } from './list';
-import { useBooks } from './list/use-books';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -28,7 +27,6 @@ const useStyles = makeStyles(theme => ({
 
 const CategoryPage: React.VoidFunctionComponent = () => {
   const classes = useStyles();
-  const { books } = useBooks();
 
   return (
     <div className={classes.root}>
@@ -49,7 +47,7 @@ const CategoryPage: React.VoidFunctionComponent = () => {
         </Toolbar>
       </AppBar>
       <main className={classes.content}>
-        <BookList books={books} />
+        <BookList />
       </main>
     </div>
   );

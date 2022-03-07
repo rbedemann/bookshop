@@ -1,13 +1,10 @@
-import { Book } from '../common/Book';
 import React from 'react';
 import { BookCard } from './card/BookCard';
+import { useBooks } from './use-books';
 
-export type BookListProps = {
-  books: Book[];
-};
-export const BookList: React.VoidFunctionComponent<BookListProps> = ({
-  books,
-}) => {
+export const BookList: React.VoidFunctionComponent = () => {
+  const { books } = useBooks();
+
   return (
     <>
       {books.map(book => (

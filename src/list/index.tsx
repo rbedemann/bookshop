@@ -1,1 +1,1 @@
-export { BookList, BookListProps } from './BookList';
+export { BookList } from './BookList';
