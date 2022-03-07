@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import { BookList } from './list';
+import { useBooks } from './list/use-books';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -27,18 +28,7 @@ const useStyles = makeStyles(theme => ({
 
 const CategoryPage: React.VoidFunctionComponent = () => {
   const classes = useStyles();
-
-  const [books, setBooks] = useState([]);
-
-  useEffect(() => {
-    function fetchBooks() {
-      fetch('http://localhost:3000/api/books')
-        .then(res => res.json())
-        .then(books => setBooks(books));
-    }
-
-    fetchBooks();
-  }, []);
+  const { books } = useBooks();
 
   return (
     <div className={classes.root}>
