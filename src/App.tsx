@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import { BookList } from './list';
+import { CssBaseline } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -29,27 +30,30 @@ const CategoryPage: React.VoidFunctionComponent = () => {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
-      <AppBar position="static">
-        <Toolbar>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="menu"
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" className={classes.title}>
-            Book Shop
-          </Typography>
-          <Button color="inherit">Cart</Button>
-        </Toolbar>
-      </AppBar>
-      <main className={classes.content}>
-        <BookList />
-      </main>
-    </div>
+    <>
+      <CssBaseline />
+      <div className={classes.root}>
+        <AppBar position="static">
+          <Toolbar>
+            <IconButton
+              edge="start"
+              className={classes.menuButton}
+              color="inherit"
+              aria-label="menu"
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography variant="h6" className={classes.title}>
+              Book Shop
+            </Typography>
+            <Button color="inherit">Cart</Button>
+          </Toolbar>
+        </AppBar>
+        <main className={classes.content}>
+          <BookList />
+        </main>
+      </div>
+    </>
   );
 };
 
