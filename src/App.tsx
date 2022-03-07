@@ -6,10 +6,8 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
 import { Book } from './common/Book';
+import { BookCard } from './list/card/BookCard';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -39,6 +37,7 @@ const CategoryPage: React.VoidFunctionComponent = () => {
         .then(res => res.json())
         .then(books => setBooks(books));
     }
+
     fetchBooks();
   }, []);
 
@@ -61,57 +60,24 @@ const CategoryPage: React.VoidFunctionComponent = () => {
         </Toolbar>
       </AppBar>
       <main className={classes.content}>
-        <BookCard books={books} />
+        <BookList books={books} />
       </main>
     </div>
   );
 };
 
-const cardStyles = makeStyles({
-  root: {
-    minWidth: '50%',
-    marginBottom: 8,
-  },
-  title: {
-    fontSize: 14,
-  },
-  pos: {
-    marginBottom: 12,
-  },
-});
-
-type BookCardProps = {
+type BookListProps = {
   books: Book[];
 };
-const BookCard: React.VoidFunctionComponent<BookCardProps> = ({ books }) => {
-  const classes = cardStyles();
-
+const BookList: React.VoidFunctionComponent<BookListProps> = ({ books }) => {
   return (
     <>
-      {books.map(book => {
-        return (
-          <Card
-            key={`${book.Publisher}${book.Author}${book.Title}`}
-            className={classes.root}
-          >
-            <CardContent>
-              <Typography variant="h5" component="h2">
-                {book.Title}
-              </Typography>
-              <Typography
-                className={classes.title}
-                color="textSecondary"
-                gutterBottom
-              >
-                {book.Author}
-              </Typography>
-            </CardContent>
-            <CardActions>
-              <Button size="small">Book in detail</Button>
-            </CardActions>
-          </Card>
-        );
-      })}
+      {books.map(book => (
+        <BookCard
+          book={book}
+          key={`${book.Publisher}${book.Author}${book.Title}`}
+        />
+      ))}
     </>
   );
 };
