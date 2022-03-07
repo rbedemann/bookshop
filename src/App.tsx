@@ -30,13 +30,13 @@ const useStyles = makeStyles(theme => ({
 export default function CategoryPage() {
   const classes = useStyles();
 
-  const [books, setBooks] = useState({});
+  const [books, setBooks] = useState([]);
 
   useEffect(() => {
     function fetchBooks() {
       fetch('http://localhost:3000/api/books')
         .then(res => res.json())
-        .then(booksObj => setBooks(booksObj));
+        .then(books => setBooks(books));
     }
     fetchBooks();
   }, []);
@@ -86,9 +86,7 @@ function BookCard(props) {
 
   return (
     <>
-      {Object.keys(books).map(bookIndex => {
-        const book = books[bookIndex];
-
+      {books.map(book => {
         return (
           <Card key={book.Title} className={classes.root}>
             <CardContent>
