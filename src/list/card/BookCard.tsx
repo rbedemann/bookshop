@@ -8,15 +8,8 @@ import { Book } from '../../common/Book';
 import { makeStyles } from '@material-ui/core/styles';
 
 const cardStyles = makeStyles({
-  root: {
-    minWidth: '50%',
-    marginBottom: 8,
-  },
   title: {
     fontSize: 14,
-  },
-  pos: {
-    marginBottom: 12,
   },
 });
 
@@ -30,7 +23,7 @@ export const BookCard: React.VoidFunctionComponent<BookCardProps> = ({
   const classes = cardStyles();
 
   return (
-    <Card className={classes.root}>
+    <Card>
       <CardContent>
         <Typography variant="h5" component="h2">
           {book.Title}
