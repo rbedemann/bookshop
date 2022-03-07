@@ -6,8 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import { Book } from './common/Book';
-import { BookCard } from './list/card/BookCard';
+import { BookList } from './list';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -63,22 +62,6 @@ const CategoryPage: React.VoidFunctionComponent = () => {
         <BookList books={books} />
       </main>
     </div>
-  );
-};
-
-type BookListProps = {
-  books: Book[];
-};
-const BookList: React.VoidFunctionComponent<BookListProps> = ({ books }) => {
-  return (
-    <>
-      {books.map(book => (
-        <BookCard
-          book={book}
-          key={`${book.Publisher}${book.Author}${book.Title}`}
-        />
-      ))}
-    </>
   );
 };
 
