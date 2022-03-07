@@ -9,6 +9,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
+import { Book } from './common/Book';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -27,7 +28,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function CategoryPage() {
+const CategoryPage: React.VoidFunctionComponent = () => {
   const classes = useStyles();
 
   const [books, setBooks] = useState([]);
@@ -64,7 +65,7 @@ export default function CategoryPage() {
       </main>
     </div>
   );
-}
+};
 
 const cardStyles = makeStyles({
   root: {
@@ -79,10 +80,11 @@ const cardStyles = makeStyles({
   },
 });
 
-function BookCard(props) {
+type BookCardProps = {
+  books: Book[];
+};
+const BookCard: React.VoidFunctionComponent<BookCardProps> = ({ books }) => {
   const classes = cardStyles();
-
-  const { books } = props;
 
   return (
     <>
@@ -109,4 +111,6 @@ function BookCard(props) {
       })}
     </>
   );
-}
+};
+
+export default CategoryPage;
