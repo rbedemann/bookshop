@@ -90,7 +90,10 @@ const BookCard: React.VoidFunctionComponent<BookCardProps> = ({ books }) => {
     <>
       {books.map(book => {
         return (
-          <Card key={book.Title} className={classes.root}>
+          <Card
+            key={`${book.Publisher}${book.Author}${book.Title}`}
+            className={classes.root}
+          >
             <CardContent>
               <Typography variant="h5" component="h2">
                 {book.Title}
