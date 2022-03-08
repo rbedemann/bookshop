@@ -1,7 +1,7 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const csv = require('csvtojson');
-const cors = require('cors');
+import express from 'express';
+import bodyParser from 'body-parser';
+import cors from 'cors';
+import csv from 'csvtojson';
 
 const server = express();
 const router = express.Router();
