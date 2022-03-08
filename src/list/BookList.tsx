@@ -1,8 +1,8 @@
-import { List, ListItem } from '@material-ui/core';
+import { List, ListItem } from '@mui/material';
 import React from 'react';
 import { BookCard } from './card/BookCard';
 import { useBooks } from './use-books';
-import { makeStyles } from '@material-ui/core/styles';
+import makeStyles from '@mui/styles/makeStyles';
 
 const listItemStyles = makeStyles({
   item: {

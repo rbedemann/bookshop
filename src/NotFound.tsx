@@ -1,5 +1,5 @@
 import React from 'react';
-import Alert from '@material-ui/lab/Alert';
+import Alert from '@mui/material/Alert';
 import { Link } from 'react-router-dom';
 
 export const NotFound: React.VoidFunctionComponent = () => (

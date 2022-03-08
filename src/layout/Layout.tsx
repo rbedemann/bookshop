@@ -1,10 +1,9 @@
-import { CssBaseline } from '@material-ui/core';
+import { createTheme, CssBaseline, StyledEngineProvider } from '@mui/material';
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import makeStyles from '@mui/styles/makeStyles';
 import { Navbar } from './Navbar';
 import { Outlet } from 'react-router-dom';
-import { ThemeProvider } from '@material-ui/core';
-import { createTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@mui/styles';
 
 const theme = createTheme();
 
@@ -23,14 +22,16 @@ export const Layout: React.VoidFunctionComponent = () => {
   const classes = appStyles();
 
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <div className={classes.root}>
-        <Navbar />
-        <main className={classes.content}>
-          <Outlet />
-        </main>
-      </div>
-    </ThemeProvider>
+    <StyledEngineProvider injectFirst>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <div className={classes.root}>
+          <Navbar />
+          <main className={classes.content}>
+            <Outlet />
+          </main>
+        </div>
+      </ThemeProvider>
+    </StyledEngineProvider>
   );
 };
