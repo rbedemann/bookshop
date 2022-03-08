@@ -6,7 +6,7 @@ export const useBooks = (): { books: Book[] } => {
 
   useEffect(() => {
     function fetchBooks() {
-      fetch('http://localhost:3000/api/books')
+      fetch('/api/books')
         .then(res => res.json())
         .then(books => setBooks(books));
     }
