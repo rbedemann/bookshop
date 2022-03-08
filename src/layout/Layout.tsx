@@ -3,6 +3,10 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Navbar } from './Navbar';
 import { Outlet } from 'react-router-dom';
+import { ThemeProvider } from '@material-ui/core';
+import { createTheme } from '@material-ui/core/styles';
+
+const theme = createTheme();
 
 const appStyles = makeStyles(() => ({
   root: {
@@ -19,7 +23,7 @@ export const Layout: React.VoidFunctionComponent = () => {
   const classes = appStyles();
 
   return (
-    <>
+    <ThemeProvider theme={theme}>
       <CssBaseline />
       <div className={classes.root}>
         <Navbar />
@@ -27,6 +31,6 @@ export const Layout: React.VoidFunctionComponent = () => {
           <Outlet />
         </main>
       </div>
-    </>
+    </ThemeProvider>
   );
 };
