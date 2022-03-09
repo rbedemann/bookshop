@@ -18,10 +18,7 @@ export const BookList: React.VoidFunctionComponent = () => {
   return (
     <List>
       {books.map(book => (
-        <ListItem
-          key={`${book.publisher}${book.author}${book.title}`}
-          className={classes.item}
-        >
+        <ListItem key={book.id} className={classes.item}>
           <BookCard
             book={book}
             key={`${book.publisher}${book.author}${book.title}`}
