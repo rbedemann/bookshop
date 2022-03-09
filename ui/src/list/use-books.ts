@@ -1,20 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useApi } from '../common/use-api';
 import { Book } from '../common/Book';
 
-export const useBooks = (): { books: Book[] } => {
-  const [books, setBooks] = useState([]);
+const fetchBooks = () => fetch('/api/books')
+  .then((res) => res.json());
 
-  useEffect(() => {
-    function fetchBooks() {
-      fetch('/api/books')
-        .then((res) => res.json())
-        .then((data) => setBooks(data));
-    }
-
-    fetchBooks();
-  }, []);
-
-  return { books };
-};
-
+export const useBooks = () => useApi<Book[]>(fetchBooks);
 export default useBooks;

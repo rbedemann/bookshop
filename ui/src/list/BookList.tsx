@@ -12,12 +12,12 @@ const listItemStyles = makeStyles({
 });
 
 export const BookList: React.VoidFunctionComponent = () => {
-  const { books } = useBooks();
+  const { data: books } = useBooks();
   const classes = listItemStyles();
 
   return (
     <List>
-      {books.map((book) => (
+      {books?.map((book) => (
         <ListItem key={book.id} className={classes.item}>
           <BookCard
             book={book}
