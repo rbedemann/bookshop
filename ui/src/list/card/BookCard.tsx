@@ -9,8 +9,8 @@ import makeStyles from '@mui/styles/makeStyles';
 
 const cardStyles = makeStyles({
   title: {
-    fontSize: 14,
-  },
+    fontSize: 14
+  }
 });
 
 export type BookCardProps = {
@@ -26,14 +26,14 @@ export const BookCard: React.VoidFunctionComponent<BookCardProps> = ({
     <Card>
       <CardContent>
         <Typography variant="h5" component="h2">
-          {book.Title}
+          {book.title}
         </Typography>
         <Typography
           className={classes.title}
           color="textSecondary"
           gutterBottom
         >
-          {book.Author}
+          {book.author}
         </Typography>
       </CardContent>
       <CardActions>
