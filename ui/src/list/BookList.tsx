@@ -1,8 +1,8 @@
 import { List, ListItem } from '@mui/material';
 import React from 'react';
+import makeStyles from '@mui/styles/makeStyles';
 import { BookCard } from './card/BookCard';
 import { useBooks } from './use-books';
-import makeStyles from '@mui/styles/makeStyles';
 
 const listItemStyles = makeStyles({
   item: {
@@ -17,7 +17,7 @@ export const BookList: React.VoidFunctionComponent = () => {
 
   return (
     <List>
-      {books.map(book => (
+      {books.map((book) => (
         <ListItem key={book.id} className={classes.item}>
           <BookCard
             book={book}

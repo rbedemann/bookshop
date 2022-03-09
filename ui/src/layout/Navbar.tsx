@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import makeStyles from '@mui/styles/makeStyles';
 
-const styles = makeStyles(theme => ({
+const styles = makeStyles((theme) => ({
   menuButton: {
     marginRight: theme.spacing(2),
   },

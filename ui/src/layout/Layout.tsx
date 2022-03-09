@@ -1,9 +1,9 @@
 import { createTheme, CssBaseline, StyledEngineProvider } from '@mui/material';
 import React from 'react';
 import makeStyles from '@mui/styles/makeStyles';
-import { Navbar } from './Navbar';
 import { Outlet } from 'react-router-dom';
 import { ThemeProvider } from '@mui/styles';
+import { Navbar } from './Navbar';
 
 const theme = createTheme();
 

@@ -7,8 +7,8 @@ export const useBooks = (): { books: Book[] } => {
   useEffect(() => {
     function fetchBooks() {
       fetch('/api/books')
-        .then(res => res.json())
-        .then(books => setBooks(books));
+        .then((res) => res.json())
+        .then((data) => setBooks(data));
     }
 
     fetchBooks();
@@ -16,3 +16,5 @@ export const useBooks = (): { books: Book[] } => {
 
   return { books };
 };
+
+export default useBooks;

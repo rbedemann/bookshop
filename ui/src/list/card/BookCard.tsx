@@ -4,13 +4,13 @@ import Typography from '@mui/material/Typography';
 import CardActions from '@mui/material/CardActions';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
-import { Book } from '../../common/Book';
 import makeStyles from '@mui/styles/makeStyles';
+import { Book } from '../../common/Book';
 
 const cardStyles = makeStyles({
   title: {
-    fontSize: 14
-  }
+    fontSize: 14,
+  },
 });
 
 export type BookCardProps = {
