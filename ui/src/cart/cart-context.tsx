@@ -1,6 +1,7 @@
 import React, {
   useCallback, useContext, useMemo, useState,
 } from 'react';
+import { Alert, Snackbar } from '@mui/material';
 import { Book } from '../common/Book';
 import { load, persist } from './storage-utils';
 import { CartItem } from './CartItem';
@@ -29,11 +30,13 @@ export const addOrMergeItem = (existingItems: CartItem[], book: Book) => {
 
 export const CartContextProvider: React.FunctionComponent = ({ children }) => {
   const [items, setItems] = useState<CartItem[]>(load());
+  const [showSuccessMessage, setShowSuccessMessage] = useState<boolean>(false);
 
   const addItemToCart = useCallback((item: Book) => {
     const newItems = addOrMergeItem(items, item);
     setItems(newItems);
     persist(newItems);
+    setShowSuccessMessage(true);
   }, [items]);
 
   const contextValue = useMemo(() => ({
@@ -44,8 +47,21 @@ export const CartContextProvider: React.FunctionComponent = ({ children }) => {
     add: addItemToCart,
   }), [items, addItemToCart]);
 
+  const handleCloseSuccessMessage = () => {
+    setShowSuccessMessage(false);
+  };
   return (
     <CartContext.Provider value={contextValue}>
+      <Snackbar
+        open={showSuccessMessage}
+        autoHideDuration={4000}
+        onClose={handleCloseSuccessMessage}
+        anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+      >
+        <Alert onClose={handleCloseSuccessMessage} severity="success" sx={{ width: '100%' }}>
+          Book has been added to your cart!
+        </Alert>
+      </Snackbar>
       {children}
     </CartContext.Provider>
   );
