@@ -1,4 +1,4 @@
-import { Box, createTheme, CssBaseline, LinkProps, StyledEngineProvider } from '@mui/material';
+import { Container, createTheme, CssBaseline, LinkProps, StyledEngineProvider } from '@mui/material';
 import React from 'react';
 import makeStyles from '@mui/styles/makeStyles';
 import { Outlet } from 'react-router-dom';
@@ -32,14 +32,13 @@ export const Layout: React.VoidFunctionComponent = () => {
         <CssBaseline />
         <div className={classes.root}>
           <Navbar />
-          <Box
+          <Container
+            maxWidth="sm"
             component="main"
-            sx={{
-              p: 3, maxWidth: 'sm', align: 'center', mx: 'auto',
-            }}
+            sx={{ pt: 3 }}
           >
             <Outlet />
-          </Box>
+          </Container>
         </div>
       </ThemeProvider>
     </StyledEngineProvider>
