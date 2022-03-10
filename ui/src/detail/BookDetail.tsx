@@ -1,15 +1,18 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { Button, Grid, Stack, Typography } from '@mui/material';
+import { Button, CardActions, Grid, Stack, Typography } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
+import { ShoppingCart } from '@mui/icons-material';
 import { useBook } from './use-book';
 import { Genres } from './Genres';
 import { Header } from './Header';
+import { useCart } from '../cart/cart-context';
 
 export const BookDetail: React.VoidFunctionComponent = () => {
   const { bookId } = useParams();
+  const { add: addBookToCart } = useCart();
   const { data: book } = useBook(bookId!!);
 
   if (!book) return null;
@@ -38,6 +41,16 @@ export const BookDetail: React.VoidFunctionComponent = () => {
             </Grid>
           </Stack>
         </CardContent>
+        <CardActions>
+          <Button
+            size="small"
+            startIcon={<ShoppingCart />}
+            variant="outlined"
+            onClick={() => addBookToCart(book)}
+          >
+            Add to Cart
+          </Button>
+        </CardActions>
       </Card>
     </>
   );
