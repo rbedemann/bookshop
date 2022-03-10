@@ -1,20 +1,25 @@
-import { createTheme, CssBaseline, StyledEngineProvider } from '@mui/material';
+import { Box, createTheme, CssBaseline, LinkProps, StyledEngineProvider } from '@mui/material';
 import React from 'react';
 import makeStyles from '@mui/styles/makeStyles';
 import { Outlet } from 'react-router-dom';
 import { ThemeProvider } from '@mui/styles';
 import { Navbar } from './Navbar';
+import { LinkBehavior } from './LinkBehavior';
 
-const theme = createTheme();
+const theme = createTheme({
+  components: {
+    MuiLink: {
+      defaultProps: { component: LinkBehavior } as LinkProps,
+    },
+    MuiButtonBase: {
+      defaultProps: { LinkComponent: LinkBehavior },
+    },
+  },
+});
 
 const appStyles = makeStyles(() => ({
   root: {
     flexGrow: 1,
-  },
-  content: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
   },
 }));
 
@@ -27,9 +32,14 @@ export const Layout: React.VoidFunctionComponent = () => {
         <CssBaseline />
         <div className={classes.root}>
           <Navbar />
-          <main className={classes.content}>
+          <Box
+            component="main"
+            sx={{
+              p: 3, maxWidth: 'sm', align: 'center', mx: 'auto',
+            }}
+          >
             <Outlet />
-          </main>
+          </Box>
         </div>
       </ThemeProvider>
     </StyledEngineProvider>

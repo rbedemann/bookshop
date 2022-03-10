@@ -37,7 +37,7 @@ export const BookCard: React.VoidFunctionComponent<BookCardProps> = ({
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Book in detail</Button>
+        <Button size="small" href={book.id}>Book in detail</Button>
       </CardActions>
     </Card>
   );
