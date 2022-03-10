@@ -5,6 +5,7 @@ import {
 } from '@mui/material';
 import Button from '@mui/material/Button';
 import { Delete } from '@mui/icons-material';
+import IconButton from '@mui/material/IconButton';
 import { useCart } from './cart-context';
 import { CartItem } from './CartItem';
 
@@ -19,8 +20,15 @@ const emptyPlaceholder = (
   </Box>
 );
 
-const renderCartItem = (item: CartItem) => (
-  <ListItem key={item.book.id}>
+const renderCartItem = (item: CartItem, onDelete: Function) => (
+  <ListItem
+    key={item.book.id}
+    secondaryAction={(
+      <IconButton edge="end" aria-label="delete" onClick={() => onDelete()}>
+        <Delete />
+      </IconButton>
+    )}
+  >
     <ListItemIcon>
       <Chip label={item.quantity} color={item.quantity > 1 ? 'primary' : 'default'} />
     </ListItemIcon>
@@ -35,7 +43,7 @@ const renderCartItem = (item: CartItem) => (
 );
 
 export const Cart: React.VoidFunctionComponent = () => {
-  const { items, clear } = useCart();
+  const { items, clear, remove } = useCart();
   const hasItems = !!items?.length;
 
   return (
@@ -45,7 +53,7 @@ export const Cart: React.VoidFunctionComponent = () => {
       </Box>
       <Divider />
       {!hasItems && emptyPlaceholder}
-      {hasItems && items.map((item) => renderCartItem(item))}
+      {hasItems && items.map((item) => renderCartItem(item, () => remove(item)))}
       <Divider />
       <Box>
         <Button

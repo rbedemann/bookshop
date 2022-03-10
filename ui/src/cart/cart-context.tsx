@@ -10,10 +10,13 @@ type ContextProps = {
   items: CartItem[],
   itemCount: number,
   add: (item: Book) => void
+  remove: (item: CartItem) => void
   clear: () => void
 };
 export const CartContext = React.createContext<ContextProps>({
   add(): void {
+  },
+  remove(): void {
   },
   clear(): void {
   },
@@ -30,6 +33,10 @@ export const addOrMergeItem = (existingItems: CartItem[], book: Book) => {
   }
   return [...existingItems];
 };
+export const removeItem = (
+  existingItems: CartItem[],
+  item: CartItem,
+) => existingItems.filter((existingItem) => existingItem !== item);
 
 export const CartContextProvider: React.FunctionComponent = ({ children }) => {
   const [items, setItems] = useState<CartItem[]>(load());
@@ -47,6 +54,12 @@ export const CartContextProvider: React.FunctionComponent = ({ children }) => {
     clear();
   };
 
+  const removeItemFromCart = useCallback((item: CartItem) => {
+    const newItems = removeItem(items, item);
+    setItems(newItems);
+    persist(newItems);
+  }, [items]);
+
   const contextValue = useMemo(() => ({
     items,
     clear: clearCart,
@@ -54,7 +67,8 @@ export const CartContextProvider: React.FunctionComponent = ({ children }) => {
       .map((item) => item.quantity)
       .reduce((a, b) => a + b, 0),
     add: addItemToCart,
-  }), [items, addItemToCart]);
+    remove: removeItemFromCart,
+  }), [items, addItemToCart, removeItemFromCart]);
 
   const handleCloseSuccessMessage = () => {
     setShowSuccessMessage(false);
