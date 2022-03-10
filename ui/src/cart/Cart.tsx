@@ -20,7 +20,7 @@ const emptyPlaceholder = (
 const renderCartItem = (item: CartItem) => (
   <ListItem key={item.book.id}>
     <ListItemIcon>
-      <Chip label={item.quantity} />
+      <Chip label={item.quantity} color={item.quantity > 1 ? 'primary' : 'default'} />
     </ListItemIcon>
     <Typography>
       {item.book.title}
