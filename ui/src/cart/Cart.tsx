@@ -3,6 +3,8 @@ import Typography from '@mui/material/Typography';
 import {
   Box, Chip, Divider, ListItem, ListItemIcon, Stack,
 } from '@mui/material';
+import Button from '@mui/material/Button';
+import { Delete } from '@mui/icons-material';
 import { useCart } from './cart-context';
 import { CartItem } from './CartItem';
 
@@ -33,7 +35,7 @@ const renderCartItem = (item: CartItem) => (
 );
 
 export const Cart: React.VoidFunctionComponent = () => {
-  const { items } = useCart();
+  const { items, clear } = useCart();
   const hasItems = !!items?.length;
 
   return (
@@ -45,6 +47,17 @@ export const Cart: React.VoidFunctionComponent = () => {
       {!hasItems && emptyPlaceholder}
       {hasItems && items.map((item) => renderCartItem(item))}
       <Divider />
+      <Box>
+        <Button
+          variant="text"
+          startIcon={<Delete />}
+          size="small"
+          color="error"
+          onClick={clear}
+        >
+          Delete All
+        </Button>
+      </Box>
     </Stack>
   );
 };

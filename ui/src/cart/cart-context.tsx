@@ -3,16 +3,19 @@ import React, {
 } from 'react';
 import { Alert, Snackbar } from '@mui/material';
 import { Book } from '../common/Book';
-import { load, persist } from './storage-utils';
+import { load, clear, persist } from './storage-utils';
 import { CartItem } from './CartItem';
 
 type ContextProps = {
   items: CartItem[],
   itemCount: number,
   add: (item: Book) => void
+  clear: () => void
 };
 export const CartContext = React.createContext<ContextProps>({
   add(): void {
+  },
+  clear(): void {
   },
   items: [],
   itemCount: 0,
@@ -39,8 +42,14 @@ export const CartContextProvider: React.FunctionComponent = ({ children }) => {
     setShowSuccessMessage(true);
   }, [items]);
 
+  const clearCart = () => {
+    setItems([]);
+    clear();
+  };
+
   const contextValue = useMemo(() => ({
     items,
+    clear: clearCart,
     itemCount: items
       .map((item) => item.quantity)
       .reduce((a, b) => a + b, 0),
