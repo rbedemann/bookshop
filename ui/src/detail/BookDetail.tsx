@@ -1,6 +1,8 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { Button, CardActions, Grid, Stack, Typography } from '@mui/material';
+import {
+  Button, CardActions, Grid, Stack, Typography,
+} from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';

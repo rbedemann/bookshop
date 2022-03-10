@@ -1,12 +1,12 @@
-import { Book } from '../common/Book';
+import { CartItem } from './CartItem';
 
 const LOCAL_STORAGE_KEY = 'cart';
 
-export const load = (): Book[] => {
+export const load = (): CartItem[] => {
   const storage = localStorage.getItem(LOCAL_STORAGE_KEY);
   return storage ? JSON.parse(storage) : [];
 };
 
-export const persist = (items: Book[]) => {
+export const persist = (items: CartItem[]) => {
   localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(items));
 };

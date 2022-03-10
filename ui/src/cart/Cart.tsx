@@ -1,10 +1,10 @@
 import React from 'react';
 import Typography from '@mui/material/Typography';
 import {
-  Box, Divider, ListItem, Stack,
+  Box, Chip, Divider, ListItem, ListItemIcon, Stack,
 } from '@mui/material';
 import { useCart } from './cart-context';
-import { Book } from '../common/Book';
+import { CartItem } from './CartItem';
 
 const emptyPlaceholder = (
   <Box
@@ -17,21 +17,24 @@ const emptyPlaceholder = (
   </Box>
 );
 
-const renderCartItem = (item: Book) => (
-  <ListItem key={item.id}>
+const renderCartItem = (item: CartItem) => (
+  <ListItem key={item.book.id}>
+    <ListItemIcon>
+      <Chip label={item.quantity} />
+    </ListItemIcon>
     <Typography>
-      {item.title}
+      {item.book.title}
     </Typography>
     {' - '}
     <Typography color="text.secondary">
-      {item.author}
+      {item.book.author}
     </Typography>
   </ListItem>
 );
 
 export const Cart: React.VoidFunctionComponent = () => {
   const { items } = useCart();
-  const hasItems = !!items.length;
+  const hasItems = !!items?.length;
 
   return (
     <Stack spacing={2}>
