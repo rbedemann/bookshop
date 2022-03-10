@@ -6,6 +6,8 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import makeStyles from '@mui/styles/makeStyles';
+import { Badge } from '@mui/material';
+import { useCart } from '../cart/cart-context';
 
 const styles = makeStyles((theme) => ({
   menuButton: {
@@ -17,6 +19,8 @@ const styles = makeStyles((theme) => ({
 }));
 export const Navbar: React.VoidFunctionComponent = () => {
   const classes = styles();
+  const { itemCount } = useCart();
+
   return (
     <AppBar position="static">
       <Toolbar>
@@ -32,7 +36,13 @@ export const Navbar: React.VoidFunctionComponent = () => {
         <Typography variant="h6" className={classes.title}>
           Book Shop
         </Typography>
-        <Button color="inherit" href="cart">Cart</Button>
+        <Button color="inherit" href="cart">
+          {itemCount ? (
+            <Badge badgeContent={itemCount} color="secondary">
+              Cart
+            </Badge>
+          ) : 'Cart'}
+        </Button>
       </Toolbar>
     </AppBar>
   );
