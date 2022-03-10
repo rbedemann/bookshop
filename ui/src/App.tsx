@@ -4,6 +4,7 @@ import { BookList } from './list';
 import { Layout } from './layout';
 import NotFound from './NotFound';
 import { BookDetail } from './detail';
+import { Cart } from './cart/Cart';
 
 const App: React.VoidFunctionComponent = () => (
   <Routes>
@@ -11,6 +12,7 @@ const App: React.VoidFunctionComponent = () => (
       <Route index element={<Navigate to="/books" replace />} />
       <Route path="books" element={<BookList />} />
       <Route path="books/:bookId" element={<BookDetail />} />
+      <Route path="cart" element={<Cart />} />
       <Route path="*" element={<NotFound />} />
     </Route>
   </Routes>

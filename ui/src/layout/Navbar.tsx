@@ -32,7 +32,7 @@ export const Navbar: React.VoidFunctionComponent = () => {
         <Typography variant="h6" className={classes.title}>
           Book Shop
         </Typography>
-        <Button color="inherit">Cart</Button>
+        <Button color="inherit" href="cart">Cart</Button>
       </Toolbar>
     </AppBar>
   );
