@@ -10,7 +10,7 @@ import { ShoppingCart } from '@mui/icons-material';
 import { useBook } from './use-book';
 import { Genres } from './Genres';
 import { Header } from './Header';
-import { useCart } from '../cart/cart-context';
+import { useCart } from '../../cart/cart-context';
 
 export const BookDetail: React.VoidFunctionComponent = () => {
   const { bookId } = useParams();

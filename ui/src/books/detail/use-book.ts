@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { useApi } from '../common/use-api';
+import { useApi } from '../../common/use-api';
 
 const fetchBook = (id: string) => fetch(`/api/books/${id}`)
   .then((res) => res.json());
