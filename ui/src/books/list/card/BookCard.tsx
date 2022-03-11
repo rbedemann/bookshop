@@ -5,7 +5,8 @@ import CardActions from '@mui/material/CardActions';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import makeStyles from '@mui/styles/makeStyles';
-import { Book } from '../../common/Book';
+import { Link as RouterLink, useLocation } from 'react-router-dom';
+import { Book } from '../../../common/Book';
 
 const cardStyles = makeStyles({
   title: {
@@ -17,10 +18,13 @@ export type BookCardProps = {
   book: Book;
 };
 
-export const BookCard: React.VoidFunctionComponent<BookCardProps> = ({
-  book,
-}) => {
+export const BookCard: React.VoidFunctionComponent<BookCardProps> = (
+  {
+    book,
+  },
+) => {
   const classes = cardStyles();
+  const location = useLocation();
 
   return (
     <Card>
@@ -37,7 +41,16 @@ export const BookCard: React.VoidFunctionComponent<BookCardProps> = ({
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small" href={book.id}>Book in detail</Button>
+        <Button
+          size="small"
+          component={RouterLink}
+          state={{
+            backgroundLocation: location,
+          }}
+          to={book.id}
+        >
+          Book in detail
+        </Button>
       </CardActions>
     </Card>
   );

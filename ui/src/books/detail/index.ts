@@ -1,1 +1,2 @@
-export { BookDetail } from './BookDetail';
+export { DetailContent } from './content';
+export { DetailModal } from './DetailModal';
