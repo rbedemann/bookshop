@@ -12,11 +12,17 @@ type ContextProps = {
   add: (item: Book) => void
   remove: (item: CartItem) => void
   clear: () => void
+  increase: (item: CartItem) => void
+  decrease: (item: CartItem) => void
 };
 export const CartContext = React.createContext<ContextProps>({
   add(): void {
   },
   remove(): void {
+  },
+  increase(): void {
+  },
+  decrease(): void {
   },
   clear(): void {
   },
@@ -37,6 +43,37 @@ export const removeItem = (
   existingItems: CartItem[],
   item: CartItem,
 ) => existingItems.filter((existingItem) => existingItem !== item);
+
+export const increaseItem = (
+  existingItems: CartItem[],
+  item: CartItem,
+): CartItem[] => {
+  const existing = existingItems.find(
+    (existingItem) => existingItem.book.id === item.book.id,
+  );
+  if (existing) {
+    existing.quantity += 1;
+    return [...existingItems];
+  }
+  return existingItems;
+};
+
+export const decreaseItem = (
+  existingItems: CartItem[],
+  item: CartItem,
+): CartItem[] => {
+  const existing = existingItems.find(
+    (existingItem) => existingItem.book.id === item.book.id,
+  );
+
+  if (!existing) return existingItems;
+
+  if (existing.quantity > 1) {
+    existing.quantity -= 1;
+    return [...existingItems];
+  }
+  return removeItem(existingItems, item);
+};
 
 export const CartContextProvider: React.FunctionComponent = ({ children }) => {
   const [items, setItems] = useState<CartItem[]>(load());
@@ -60,15 +97,38 @@ export const CartContextProvider: React.FunctionComponent = ({ children }) => {
     persist(newItems);
   }, [items]);
 
-  const contextValue = useMemo(() => ({
-    items,
-    clear: clearCart,
-    itemCount: items
-      .map((item) => item.quantity)
-      .reduce((a, b) => a + b, 0),
-    add: addItemToCart,
-    remove: removeItemFromCart,
-  }), [items, addItemToCart, removeItemFromCart]);
+  const increaseItemQuantityInCart = useCallback((item: CartItem) => {
+    const newItems = increaseItem(items, item);
+    setItems(newItems);
+    persist(newItems);
+  }, [items]);
+
+  const decreaseItemQuantityInCart = useCallback((item: CartItem) => {
+    const newItems = decreaseItem(items, item);
+    setItems(newItems);
+    persist(newItems);
+  }, [items]);
+
+  const contextValue = useMemo<ContextProps>(
+    () => ({
+      items,
+      clear: clearCart,
+      itemCount: items
+        .map((item) => item.quantity)
+        .reduce((a, b) => a + b, 0),
+      add: addItemToCart,
+      remove: removeItemFromCart,
+      increase: increaseItemQuantityInCart,
+      decrease: decreaseItemQuantityInCart,
+    }),
+    [
+      items,
+      addItemToCart,
+      removeItemFromCart,
+      increaseItemQuantityInCart,
+      decreaseItemQuantityInCart,
+    ],
+  );
 
   const handleCloseSuccessMessage = () => {
     setShowSuccessMessage(false);
