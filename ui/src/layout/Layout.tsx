@@ -1,4 +1,6 @@
-import { Container, createTheme, CssBaseline, LinkProps, StyledEngineProvider } from '@mui/material';
+import {
+  Container, createTheme, CssBaseline, LinkProps, StyledEngineProvider,
+} from '@mui/material';
 import React from 'react';
 import makeStyles from '@mui/styles/makeStyles';
 import { Outlet } from 'react-router-dom';
