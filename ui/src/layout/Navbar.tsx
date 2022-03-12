@@ -2,14 +2,14 @@ import React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import makeStyles from '@mui/styles/makeStyles';
-import { Badge } from '@mui/material';
+import { Badge, Theme } from '@mui/material';
+import { Home } from '@mui/icons-material';
 import { useCart } from '../cart/cart-context';
 
-const styles = makeStyles((theme) => ({
+const styles = makeStyles((theme: Theme) => ({
   menuButton: {
     marginRight: theme.spacing(2),
   },
@@ -30,8 +30,9 @@ export const Navbar: React.VoidFunctionComponent = () => {
           color="inherit"
           aria-label="menu"
           size="large"
+          href="/"
         >
-          <MenuIcon />
+          <Home />
         </IconButton>
         <Typography variant="h6" className={classes.title}>
           Book Shop
