@@ -1,6 +1,7 @@
 import { List, ListItem } from '@mui/material';
 import React from 'react';
 import makeStyles from '@mui/styles/makeStyles';
+import Alert from '@mui/material/Alert';
 import { BookCard } from './card/BookCard';
 import { useBooks } from './use-books';
 
@@ -12,7 +13,7 @@ const listItemStyles = makeStyles({
 });
 
 export const BookList: React.VoidFunctionComponent = () => {
-  const { data: books } = useBooks();
+  const { data: books, error } = useBooks();
   const classes = listItemStyles();
 
   return (
@@ -25,6 +26,7 @@ export const BookList: React.VoidFunctionComponent = () => {
           />
         </ListItem>
       ))}
+      {error && <Alert severity="error">Could not load your books! 😕</Alert>}
     </List>
   );
 };
