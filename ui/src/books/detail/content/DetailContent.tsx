@@ -1,6 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import {
+  Alert,
   Button, CardActions, Grid, Stack, Typography,
 } from '@mui/material';
 import Card from '@mui/material/Card';
@@ -14,9 +15,9 @@ import { useCart } from '../../../cart/cart-context';
 export const DetailContent: React.VoidFunctionComponent = () => {
   const { bookId } = useParams();
   const { add: addBookToCart } = useCart();
-  const { data: book } = useBook(bookId!!);
+  const { data: book, error } = useBook(bookId!!);
 
-  if (!book) return null;
+  if (!book || error) return <Alert severity="error">Could not load this book! 😕 Does it exist? 🤔</Alert>;
 
   return (
     <Card>
