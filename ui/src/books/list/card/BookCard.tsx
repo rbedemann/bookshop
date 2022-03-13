@@ -27,12 +27,13 @@ export const BookCard: React.VoidFunctionComponent<BookCardProps> = (
   const location = useLocation();
 
   return (
-    <Card>
+    <Card className="book">
       <CardContent>
         <Typography variant="h5" component="h2">
           {book.title}
         </Typography>
         <Typography
+          component="h3"
           className={classes.title}
           color="textSecondary"
           gutterBottom

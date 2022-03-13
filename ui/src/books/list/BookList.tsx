@@ -16,7 +16,7 @@ export const BookList: React.VoidFunctionComponent = () => {
   const classes = listItemStyles();
 
   return (
-    <List>
+    <List className="books">
       {books?.map((book) => (
         <ListItem key={book.id} className={classes.item}>
           <BookCard

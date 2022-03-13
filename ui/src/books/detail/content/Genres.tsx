@@ -11,12 +11,13 @@ export const Genres: React.VoidFunctionComponent<GenresProps> = (
     subgenre,
   },
 ) => (
-  <Box>
+  <Box className="genres">
     <Typography variant="overline">Genre:</Typography>
     {
       [genre, subgenre].map(
         (item) => (
           <Chip
+            className="genre"
             label={item}
             size="small"
             sx={{ ml: 0.5 }}

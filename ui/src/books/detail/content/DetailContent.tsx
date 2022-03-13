@@ -27,7 +27,7 @@ export const DetailContent: React.VoidFunctionComponent = () => {
             <Grid item xs={12} md={8}>
               <Genres genre={book.genre} subgenre={book.subgenre} />
             </Grid>
-            <Grid item xs={12} md={4}>
+            <Grid item xs={12} md={4} className="height">
               <Typography variant="overline">Height:</Typography>
               <Typography component="span">{book.height}</Typography>
             </Grid>

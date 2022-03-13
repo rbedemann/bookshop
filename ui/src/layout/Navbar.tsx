@@ -39,7 +39,7 @@ export const Navbar: React.VoidFunctionComponent = () => {
         </Typography>
         <Button color="inherit" href="cart">
           {itemCount ? (
-            <Badge badgeContent={itemCount} color="secondary">
+            <Badge badgeContent={itemCount} color="secondary" className="cart-item-count">
               Cart
             </Badge>
           ) : 'Cart'}

@@ -37,6 +37,7 @@ export const Cart: React.VoidFunctionComponent = () => {
           size="small"
           color="error"
           onClick={clear}
+          className="cart-remove-all"
         >
           Delete All
         </Button>
